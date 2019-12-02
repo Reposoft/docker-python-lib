@@ -5,7 +5,10 @@ RUN groupadd -g 65532 nonroot && \
 USER nonroot:nonroot
 WORKDIR /home/nonroot
 
-RUN pip install --user tmuxp && \
-  mv -v ~/.local ~/tmuxp && \
-  mv -v ~/tmuxp/lib/python2.7/site-packages ~/tmuxp/site-packages && \
-  PYTHONPATH=~/tmuxp/site-packages tmuxp/bin/tmuxp --version
+ARG pip_package=tmuxp
+ENV PIP_PACKAGE ${pip_package}
+RUN pip install --user ${PIP_PACKAGE} && \
+  mv -v ~/.local ~/${PIP_PACKAGE} && \
+  mv -v ~/${PIP_PACKAGE}/lib/python2.7/site-packages ~/${PIP_PACKAGE}/site-packages
+
+RUN PYTHONPATH=~/${PIP_PACKAGE}/site-packages ${PIP_PACKAGE}/bin/${PIP_PACKAGE} --version
