@@ -10,7 +10,7 @@ For example to run [tmuxp](https://github.com/tmux-python/tmuxp):
 
 ```bash
 MYBIN=./bin
-libbuild=solsson/python-lib-tmuxp:latest
+libbuild=solsson/python-lib:tmuxp
 docker run --rm --entrypoint sleep -d --name python-lib-tmuxp-for-copy $libbuild 3600
 docker cp python-lib-tmuxp-for-copy:/home/nonroot/tmuxp $MYBIN/tmuxp
 docker kill python-lib-tmuxp-for-copy
