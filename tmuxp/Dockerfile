@@ -6,5 +6,6 @@ USER nonroot:nonroot
 WORKDIR /home/nonroot
 
 RUN pip install --user tmuxp && \
-  mv ~/.local ~/.python && \
-  PYTHONPATH=~/.python/lib/python2.7/site-packages /home/nonroot/.python/bin/tmuxp --version
+  mv -v ~/.local ~/tmuxp && \
+  mv -v ~/tmuxp/lib/python2.7/site-packages ~/tmuxp/site-packages && \
+  PYTHONPATH=~/tmuxp/site-packages tmuxp/bin/tmuxp --version

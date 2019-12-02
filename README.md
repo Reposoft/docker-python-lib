@@ -12,10 +12,11 @@ For example to run [tmuxp](https://github.com/tmux-python/tmuxp):
 MYBIN=./bin
 libbuild=solsson/python-lib-tmuxp:latest
 docker run --rm --entrypoint sleep -d --name python-lib-tmuxp-for-copy $libbuild 3600
-docker cp python-lib-tmuxp-for-copy:/home/nonroot/.python $MYBIN/tmuxp/.python
+docker cp python-lib-tmuxp-for-copy:/home/nonroot/tmuxp $MYBIN/tmuxp
 docker kill python-lib-tmuxp-for-copy
 
-sed -i '' 's|#!/usr/local/bin/python|#!/usr/bin/env python|' $MYBIN/tmuxp/.python/bin/tmuxp
+# On OSX
+sed -i '' 's|#!/usr/local/bin/python|#!/usr/bin/env python|' $MYBIN/tmuxp/bin/tmuxp
 
-PYTHONPATH=$MYBIN/tmuxp/.python/lib/python2.7/site-packages $MYBIN/tmuxp/.python/bin/tmuxp
+PYTHONPATH=$MYBIN/tmuxp/site-packages $MYBIN/tmuxp/bin/tmuxp
 ```
